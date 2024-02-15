@@ -1,4 +1,4 @@
-![golang logo](golang_logo.png)
+[![Go](https://github.com/srmohanram/sampleappgo/actions/workflows/go.yml/badge.svg?branch=master)](https://github.com/srmohanram/sampleappgo/actions/workflows/go.yml)
 
 # Golang Example Application
 
