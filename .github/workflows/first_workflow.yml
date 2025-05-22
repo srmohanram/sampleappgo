@@ -21,3 +21,8 @@ jobs:
       run: ls
     - name: Test
       run: go test -v ./...
+    - name: Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: BuildOutput
+        path: /
