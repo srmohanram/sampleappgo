@@ -35,7 +35,9 @@ jobs:
     - name: Build
       run: go build -v ./...
     - name: check files
-      run: ls -al
+      run: |
+        tree -d .
+        ls -al
     - name: Test
       run: go test -v ./...
     - name: output env values
