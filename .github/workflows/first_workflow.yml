@@ -14,6 +14,13 @@ jobs:
         go-version: ['1.19', '1.20', '1.21.x']
     steps:
     - uses: actions/checkout@v4
+    - name: Get dependencies
+      uses: actions/cache@v4
+      with:
+        path:  |
+          ~/go/pkg/mod # actually uses `go env GOMODCACHE` output
+          ~/.cache/go-build # actually uses `go env GOCACHE` output        
+        key: deps-go-${{ hashFiles('go.sum') }}
     - name: Set up Go
       uses: actions/setup-go@v4
       with:
@@ -28,4 +35,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: BuildOutput
-        path: /.
+        path: ~/
