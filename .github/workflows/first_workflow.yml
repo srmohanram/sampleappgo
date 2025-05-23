@@ -2,13 +2,16 @@ name: Go
 
 on:
   push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
+    branches:
+      - master
+      - dev
+  # pull_request:
+  #   branches: [ "master" ]
 env:
   WORKFLOW_ENV: ${{ secrets.WORKFLOW_ENV }}
 jobs:
   build:
+    environment: test
     env:
       JOB_ENV1: ${{ secrets.JOB_ENV1 }}
       JOB_ENV2: job_env2_value
