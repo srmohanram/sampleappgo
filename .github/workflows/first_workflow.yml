@@ -28,8 +28,10 @@ jobs:
     - name: Run linting for Go
       run: |
         go install golang.org/x/lint/golint@latest
-        golint ./...
         set -e
+        echo "See below linting"
+        golint ./...
+        
   build:
     environment: test
     env:
