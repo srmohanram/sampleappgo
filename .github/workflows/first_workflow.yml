@@ -6,16 +6,16 @@ on:
   pull_request:
     branches: [ "master" ]
 env:
-  WORKFLOW_ENV: workflow_env_value
+  WORKFLOW_ENV: ${{ secrets.WORKFLOW_ENV }}
 jobs:
   build:
     env:
-      JOB_ENV1: job_env1_value
+      JOB_ENV1: ${{ secrets.JOB_ENV1 }}
       JOB_ENV2: job_env2_value
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        go-version: ['1.19', '1.20', '1.21.x']
+        go-version: ['1.21.x']
     steps:
     - uses: actions/checkout@v4
     - name: Get dependencies
