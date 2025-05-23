@@ -29,7 +29,7 @@ jobs:
       run: |
         go install golang.org/x/lint/golint@latest
         golint ./...
-
+        set -e
   build:
     environment: test
     env:
@@ -82,3 +82,13 @@ jobs:
         run: ls -alR
       - name: Deployment
         run: echo "Deploying..."
+  status:
+    needs: [lint, test]
+    runs-on: ubuntu-latest
+    steps:
+      - name: overall status
+        if: failure()
+        run: |
+          echo "Check the other jobs status"
+          echo "${{ toJson(github) }}
+        
