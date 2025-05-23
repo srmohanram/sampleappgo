@@ -45,6 +45,7 @@ jobs:
     - uses: actions/checkout@v4
     - name: Get dependencies
       uses: actions/cache@v4
+      id: cache
       with:
         path:  |
           ~/go/pkg/mod # actually uses `go env GOMODCACHE` output
@@ -55,12 +56,14 @@ jobs:
       with:
         go-version: ${{ matrix.go-version }}
     - name: Build
+      if: steps.cache.outputs.cache-hit != 'true'
       run: go build -v ./...
     - name: check files
       run: |
         tree -d .
         ls -al
     - name: Test
+      if: steps.cache.outputs.cache-hit != 'true'
       run: go test -v ./...
     - name: output env values
       run: |
