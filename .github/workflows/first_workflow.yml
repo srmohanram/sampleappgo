@@ -5,9 +5,13 @@ on:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
-
+env:
+  WORKFLOW_ENV: workflow_env_value
 jobs:
   build:
+    env:
+      JOB_ENV1: job_env1_value
+      JOB_ENV2: job_env2_value
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -31,6 +35,10 @@ jobs:
       run: ls -al
     - name: Test
       run: go test -v ./...
+    - name: output env values
+      run: |
+        echo "workflow env value is $WORKFLOW_ENV"
+        echo "job env1 value is ${{ env.JOB_ENV1 }} & job env2 is $JOB_ENV2"
     # - name: Artifacts
     #   uses: actions/upload-artifact@v4
     #   with:
