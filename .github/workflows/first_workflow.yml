@@ -80,7 +80,7 @@ jobs:
     uses: ./.github/workflows/go.yml
     
   status:
-    needs: [lint, test]
+    # needs: [lint, test]
     runs-on: ubuntu-latest
     services:
       testws:
