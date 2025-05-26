@@ -80,17 +80,17 @@ jobs:
     uses: ./.github/workflows/go.yml
     
   status:
-    # needs: [lint, test]
+    needs: [lint, test]
     runs-on: ubuntu-latest
     services:
       testws:
         image: nginx
         ports:
           - 8080:80
-    # steps:
-    #   - name: overall status
-    #     if: failure()
-    #     run: |
-    #       echo "Check the other jobs status"
-    #       echo "${{ toJson(github) }}
+    steps:
+      - name: overall status
+        if: failure()
+        run: |
+          echo "Check the other jobs status"
+          echo "${{ toJson(github) }}
         
