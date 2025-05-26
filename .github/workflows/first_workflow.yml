@@ -82,10 +82,15 @@ jobs:
   status:
     needs: [lint, test]
     runs-on: ubuntu-latest
-    steps:
-      - name: overall status
-        if: failure()
-        run: |
-          echo "Check the other jobs status"
-          echo "${{ toJson(github) }}
+    services:
+      testws:
+        image: nginx
+        ports:
+          - 8080:80
+    # steps:
+    #   - name: overall status
+    #     if: failure()
+    #     run: |
+    #       echo "Check the other jobs status"
+    #       echo "${{ toJson(github) }}
         
